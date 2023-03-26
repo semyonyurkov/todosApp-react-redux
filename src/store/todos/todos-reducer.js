@@ -1,8 +1,7 @@
-import { configureStore } from 'redux';
-
-const todos = (state = [], action) => {
+import { ADD_TODO, REMOVE_TODO, TOGGLE_TODO } from '../todos/todos-const';
+export const todos = (state = [], action) => {
     switch (action.type) {
-        case 'ADD_TODO': {
+        case ADD_TODO: {
             return [
                 ...state,
                 {
@@ -12,10 +11,10 @@ const todos = (state = [], action) => {
                 },
             ];
         }
-        case 'REMOVE_TODO': {
+        case REMOVE_TODO: {
             return state.filter((todo) => todo.id !== action.id);
         }
-        case 'TOGGLE_TODO': {
+        case TOGGLE_TODO: {
             return state.map((todo) =>
                 todo.id === action.id
                     ? { ...todo, completed: !todo.completed }
@@ -27,5 +26,3 @@ const todos = (state = [], action) => {
         }
     }
 };
-
-export const store = configureStore(todos);
